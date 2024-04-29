@@ -16,15 +16,16 @@ mongoose
 const app = express();
 app.use(cors());
 app.use(express.json());
-// app.use(fileUpload());
+
 
 const userRouter = require("./routes/userroutes");
 const productRouter = require("./routes/productroutes");
-// const adminRouter = require("./routes/adminroutes");
+const { createCollection } = require("./models/User");
+const adminRouter = require("./routes/adminroutes");
 
 app.use("", userRouter);
 app.use("", productRouter);
-// app.use("", adminRouter);
+app.use("", adminRouter);
 
 const port = process.env.SERVER_PORT || 3000;
 app.listen(port, () => {
